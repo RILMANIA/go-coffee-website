@@ -112,6 +112,19 @@ document.addEventListener('DOMContentLoaded', function() {
         totalPriceDisplay.textContent = `Rp ${currentOrder.totalPrice.toLocaleString('id-ID')}`;
     }
 
+    function generateID() {
+        const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const randomIndex = Math.floor(Math.random() * alphabet.length);
+        
+        let randomLetter = alphabet.charAt(randomIndex)
+        
+        return randomLetter + String(randomNumber);
+    }
+
+    const resGenerateID = generateID();
+
     // --- Event Listeners ---
     document.getElementById('order-form').addEventListener('input', (e) => {
         const targetId = e.target.id;
@@ -162,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('confirm-payment-btn').addEventListener('click', () => {
         paymentSection.classList.add('hidden');
         successMessageSection.classList.remove('hidden');
-        document.getElementById('final-message').textContent = `Pesanan sukses, Pesanan ${currentOrder.drink.name} dengan biji kopi ${currentOrder.bean.name} sedang dalam proses pembuatan.`;
+        document.getElementById('final-message').textContent = `Pesanan sukses, Pesanan ${currentOrder.drink.name} dengan biji kopi ${currentOrder.bean.name} dengan ID ${resGenerateID} sedang dalam proses pembuatan.`;
     });
     
     document.getElementById('new-order-btn').addEventListener('click', () => {
