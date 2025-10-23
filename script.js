@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const randomIndex = Math.floor(Math.random() * alphabet.length);
         
-        let randomLetter = alphabet.charAt(randomIndex)
+        const randomLetter = alphabet.charAt(randomIndex)
         
         return randomLetter + String(randomNumber);
     }
