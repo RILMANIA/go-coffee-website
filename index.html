@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO Coffee</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+    <div class="background-blur"></div>
+    <div class="container">
+        <header>
+            <h1>GO Coffee</h1>
+            <p>Your Daily Dose of Classic Coffee</p>
+        </header>
+
+        <main>
+            <section id="menu-section">
+                <h2>Our Signature Drinks</h2>
+                <div id="drink-menu" class="menu-grid">
+                    </div>
+            </section>
+            
+            <hr>
+
+            <section>
+                <h2>Choose Your Coffee Bean</h2>
+                <div id="bean-selection" class="menu-grid">
+                    </div>
+                <div id="bean-details" class="bean-details-container">
+                    </div>
+            </section>
+
+            <hr>
+
+            <section id="order-form-section" class="hidden">
+                <h2>Place Your Order</h2>
+                <form id="order-form">
+                    <div class="form-group">
+                        <label>Selected Drink:</label>
+                        <p id="selected-drink-name"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Selected Bean:</label>
+                        <p id="selected-bean-name"></p>
+                    </div>
+
+                    <div class="custom-grid">
+                        <div class="form-group">
+                            <label for="sugar">Sugar Level:</label>
+                            <select id="sugar" name="sugar">
+                                <option value="normal">Normal</option>
+                                <option value="less">Less Sugar</option>
+                                <option value="no-sugar">No Sugar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shot">Coffee Shot:</label>
+                            <select id="shot" name="shot">
+                                <option value="single">Single Shot</option>
+                                <option value="double">Double Shot (+Rp 5,000)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ice">Ice:</label>
+                            <select id="ice" name="ice">
+                                <option value="normal">Normal Ice</option>
+                                <option value="less">Less Ice</option>
+                                <option value="extra">Extra Ice</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Order Type:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="dine-in" name="order-type" value="dine-in" checked>
+                            <label for="dine-in">Dine In</label>
+                            <input type="radio" id="delivery" name="order-type" value="delivery">
+                            <label for="delivery">Delivery</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-name">Your Name:</label>
+                        <input type="text" id="customer-name" name="customer-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                    </div>
+                    
+                    <div id="delivery-info" class="hidden">
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp Number:</label>
+                            <input type="tel" id="whatsapp" name="whatsapp">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea id="address" name="address" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="total-price">
+                        <h3>Total: <span id="total-price">Rp 0</span></h3>
+                    </div>
+
+                    <button type="submit" class="btn-order">Proceed to Payment</button>
+                </form>
+            </section>
+
+            <section id="payment-section" class="hidden">
+                <h2>Payment Method</h2>
+                <div id="order-summary"></div>
+                <div class="payment-options">
+                    <div class="payment-card" id="qris-payment">
+                        <h4>Pay with QRIS</h4>
+                        <img src="qr.png" alt="Dummy QRIS Code" width="150">
+                        <p>Scan this (dummy) QR code to pay.</p>
+                    </div>
+                    <div class="payment-card" id="cc-payment">
+                        <h4>Credit Card</h4>
+                        <p>Credit card payment is currently unavailable.</p>
+                    </div>
+                </div>
+                <button id="confirm-payment-btn" class="btn-order">Confirm Payment</button>
+            </section>
+            
+            <section id="success-message" class="hidden">
+                <h2>Thank You!</h2>
+                <p id="final-message"></p>
+                <button id="new-order-btn" class="btn-order">Make New Order</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 GO Coffee. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

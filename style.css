@@ -1,0 +1,450 @@
+/* General Styling - Adapted from Barista Cafe Template */
+:root {
+    /* Colors from Barista Cafe */
+    --white-color:                  #ffffff;
+    --primary-color:                #BC6C25; /* Barista Primary Brown */
+    --secondary-color:              #DDA15E; /* Barista Secondary Beige/Orange */
+    --section-bg-color:             #b78752; /* Barista Section Background */
+    --dark-color:                   #000000;
+    --p-color:                      rgba(255, 255, 255, 0.75); /* Light text for dark bg */
+    --border-color:                 rgba(255, 255, 255, 0.2); /* Light border for dark bg */
+    --link-hover-color:             #E76F51; /* Barista Link Hover */
+
+    /* Fonts from Barista Cafe (Using Plus Jakarta Sans as primary) */
+    --body-font-family:             'Plus Jakarta Sans', sans-serif;
+    --font-heading:                 'Plus Jakarta Sans', sans-serif; /* Keep consistent or use a serif if preferred */
+    --font-body:                    'Plus Jakarta Sans', sans-serif;
+
+    /* Border Radii from Barista Cafe */
+    --border-radius-large:          100px;
+    --border-radius-medium:         20px;
+    --border-radius-small:          10px;
+
+    /* Font Weights from Barista Cafe */
+    --font-weight-light:            300;
+    --font-weight-normal:           400;
+    --font-weight-bold:             700;
+
+    /* Custom - derived */
+    --card-bg:                      rgba(45, 45, 45, 0.75); /* Darker semi-transparent card background */
+    --input-bg:                     rgba(0, 0, 0, 0.3);
+    --primary-rgb:                  188, 108, 37; /* RGB for primary color */
+    --secondary-rgb:              221, 161, 94; /* RGB for secondary color */
+
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--p-color); /* Default light text */
+    background-color: var(--dark-color); /* Dark base background */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    position: relative; /* Needed for potential overlay */
+    font-weight: var(--font-weight-light);
+}
+
+/* Replicate the dark overlay effect from Barista template */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55); /* Slightly less intense overlay */
+    z-index: -1;
+     pointer-events: none;
+}
+
+.background-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Choose an image closer to the Barista template's vibe */
+    background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1887&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px) brightness(0.6); /* Adjust blur and brightness */
+    z-index: -2; /* Behind the overlay */
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto; /* Added top/bottom margin */
+    background-color: rgba(30, 30, 30, 0.8); /* Dark, slightly transparent container */
+    padding: 40px; /* Increased padding */
+    border-radius: var(--border-radius-medium); /* Use Barista radius */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); /* Stronger shadow */
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+header {
+    text-align: center; /* Center align like Barista sections */
+    margin-bottom: 40px; /* More space */
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 25px;
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    color: var(--white-color); /* White main title */
+    font-size: 2.8rem;
+    margin: 10px 0 5px 0;
+    font-weight: var(--font-weight-bold);
+}
+
+header p { /* Style subtitle like Barista 'em' */
+    color: var(--secondary-color);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    font-weight: var(--font-weight-normal);
+}
+
+h2 {
+    font-family: var(--font-heading);
+    color: var(--secondary-color); /* Use secondary color for section titles */
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 40px; /* Space between sections */
+    font-weight: var(--font-weight-bold);
+    font-size: 1.8rem; /* Adjust size */
+}
+
+section:first-of-type h2 {
+    margin-top: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color); /* Use light border color */
+    margin: 50px 0; /* More spacing */
+}
+
+/* Menu Grid Styling - Adapted */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.menu-item, .bean-item {
+    background-color: var(--card-bg); /* Use dark card background */
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    text-align: center;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    color: var(--p-color); /* Ensure text is light */
+}
+
+.menu-item:hover, .bean-item:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    background-color: rgba(60, 60, 60, 0.9); /* Lighter dark on hover */
+    border-color: var(--secondary-color); /* Highlight border on hover */
+}
+
+.menu-item.selected, .bean-item.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(var(--primary-rgb), 0.15); /* More visible primary bg */
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.5); /* Primary glow */
+    transform: scale(1.02);
+}
+
+.menu-item img, .bean-item img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--border-radius-small); /* Consistent radius */
+    margin-bottom: 15px;
+}
+
+.menu-item h3, .bean-item h3 {
+    margin: 10px 0 5px;
+    font-family: var(--font-heading);
+    color: var(--white-color); /* White headings */
+    font-weight: var(--font-weight-bold);
+    font-size: 1.2rem;
+}
+
+.menu-item p { /* Style the price */
+    color: var(--secondary-color);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0;
+}
+
+.bean-details-container {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: rgba(0,0,0,0.25); /* Darker background for contrast */
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-color);
+    min-height: 50px; /* Ensure it has some height even when empty */
+}
+
+.bean-details-container p {
+    color: var(--p-color);
+    margin: 0;
+}
+
+.bean-details-container strong {
+    color: var(--secondary-color);
+}
+
+/* Form Styling - Adapted */
+#order-form-section {
+    margin-top: 40px;
+}
+
+#order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increased gap */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-color); /* Use secondary for labels */
+    font-size: 0.9rem;
+    text-transform: uppercase; /* Match Barista style */
+}
+
+/* Style for the static selected drink/bean text */
+#order-form .form-group p {
+    color: var(--white-color);
+    font-size: 1.1rem;
+    margin: 0 0 10px 0; /* Adjust margin */
+    font-weight: var(--font-weight-normal);
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--border-radius-small);
+}
+
+
+.custom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
+    gap: 20px;
+}
+
+input[type="text"], input[type="number"], input[type="tel"], select, textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--white-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="tel"]::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Lighter placeholder text */
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25); /* Focus shadow like Bootstrap */
+    outline: none;
+    background-color: rgba(0,0,0,0.4);
+}
+
+textarea {
+    min-height: 80px; /* Give textarea more height */
+}
+
+.radio-group {
+    margin-top: 5px;
+}
+
+.radio-group label {
+    font-weight: normal;
+    margin-right: 20px;
+    color: var(--p-color); /* Light text for radio labels */
+    font-size: 1rem;
+    text-transform: none; /* Override uppercase */
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+    accent-color: var(--primary-color); /* Style the radio button itself */
+    position: relative;
+    top: 2px;
+}
+
+.total-price {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.total-price h3 {
+    color: var(--white-color);
+    font-size: 1.6rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.total-price span {
+    color: var(--secondary-color); /* Accent for price value */
+}
+
+/* Button Styling - Using Barista's .custom-btn style */
+.btn-order {
+    background: var(--primary-color);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-large); /* Pill shape */
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
+    padding: 12px 28px; /* Barista padding */
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    display: inline-block; /* Allow padding to work correctly */
+    width: auto; /* Adjust width automatically */
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-order:hover {
+    background: var(--secondary-color);
+    color: var(--dark-color); /* Dark text on hover */
+    border-color: transparent;
+}
+
+/* Payment Section Styling - Adapted */
+#payment-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#order-summary {
+    background: rgba(0,0,0,0.3); /* Slightly darker summary box */
+    padding: 25px;
+    border-radius: var(--border-radius-small);
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    color: var(--p-color);
+}
+
+#order-summary h4 {
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: var(--font-weight-bold);
+}
+
+#order-summary p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+#order-summary strong {
+    color: var(--white-color); /* Make labels slightly bolder/whiter */
+}
+
+.payment-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.payment-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 25px 30px;
+    border-radius: var(--border-radius-small);
+    text-align: center;
+    min-width: 250px; /* Ensure cards have decent width */
+}
+
+.payment-card h4 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-weight: var(--font-weight-bold);
+}
+
+.payment-card img { /* Style QR Code */
+    background-color: white; /* Ensure QR is scannable */
+    padding: 10px;
+    border-radius: var(--border-radius-small);
+    margin-bottom: 15px;
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #eee;
+}
+
+.payment-card p {
+    color: var(--p-color);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Success Message Styling - Adapted */
+#success-message {
+    text-align: center;
+    padding: 50px 30px; /* More padding */
+    background-color: rgba(var(--secondary-rgb), 0.1); /* Subtle secondary background */
+    border: 1px solid var(--secondary-color); /* Secondary border */
+    border-radius: var(--border-radius-medium); /* Barista medium radius */
+    margin-top: 40px;
+}
+
+#success-message h2 {
+    color: var(--white-color); /* White success heading */
+    margin-bottom: 20px;
+}
+
+#success-message p {
+    font-size: 1.2rem;
+    color: var(--white-color); /* White text */
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+/* Ensure button in success message also uses the style */
+#success-message .btn-order {
+    margin-top: 0; /* Remove extra top margin if needed */
+}
+
+
+/* Footer Styling - Simple adaptation */
+footer {
+    text-align: center;
+    margin-top: 60px; /* More space before footer */
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.6); /* Muted light color */
+    font-size: 0.9rem;
+}
+
+/* Utility Class */
+.hidden {
+    display: none !important; /* Ensure it overrides any other display properties */
+}
